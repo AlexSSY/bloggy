@@ -66,3 +66,5 @@ end
 gem "sassc-rails", "~> 2.1"
 
 gem "bootstrap", "~> 5.3"
+
+gem "pagy", "~> 9.0"

@@ -1,0 +1,40 @@
+<article>
+  <h2><%= post.title %></h2>
+  <div class="mb-2">
+    <small class="text-muted"><%= time_ago_in_words(post.created_at) %></small>
+  </div>
+  <div><%= post.body %></div>
+  <div class="d-flex">
+
+  </div>
+</article>
+
+<%# Comments section %>
+<div class="mt-5">
+  <%# Form for the new comment %>
+  <%= form_with model: [@comment, Comment.new], url: post_comments_path(@post), method: :post do |form| %>
+
+    <%# Display object errors %>
+    <% if form.object.errors.any? %>
+      <div class="text-danger">
+        <% form.object.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%# Display body text-field %>
+    <%= form.text_area :body, class: "form-control mb-2" %>
+
+    <%# Display submit button %>
+    <%= form.submit "Send", class: "btn btn-primary" %>
+
+  <% end %>
+
+  <%# Display comments list %>
+  <% post.comments.each do |comment| %>
+    <div class="">
+      <%= comment.body %>
+    </div>
+  <% end %>
+</div>

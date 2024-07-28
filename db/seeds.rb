@@ -14,7 +14,7 @@ me = User.create(email: "adolf5341@gmail.com", password: "gothic", password_conf
 100.times do 
   created_user = User.create(email: "#{Faker::Name.first_name}#{Faker::Number.number(digits: 4)}@example.com", password: "gothic", password_confirmation: "gothic", admin: false)
   10.times do
-    post = Post.create(title: Faker::Lorem.words.join(" "), body:Faker::Lorem.paragraphs.join(" "), user: created_user)
+    post = Post.create(title: Faker::Lorem.words.join(" "), body:Faker::Lorem.paragraphs(number: 400).join(" "), user: created_user)
     post.likes.create(user: me)
     comment = Comment.create(user: me, post: post, body: Faker::Lorem.words(number: 7).join(" "))
     comment.likes.create(user: me)

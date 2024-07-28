@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   resource :session, only: %i[ new create destroy ]
+  resources :posts, only: %i[ index show ]
+  resources :posts do
+    resources :comments, only: :create
+  end
 end
