@@ -1,17 +1,13 @@
 <div class="row">
-  <div class="col-3">
-  </div>
-  <div class="col-6">
+  <div class="col-12">
     <%= render @post %>
     <%# Comments section %>
     <div class="mt-5">
       <%# Form for the new comment %>
       <%= render 'comments/form', comment: @comment || Comment.new, post: @post %>
       <%# Display comments list %>
-      <div class="mt-3"></div>
+      <div class="mt-4"></div>
       <%= render 'comments/comments', comments: @post.comments %>
     </div>
-  </div>
-  <div class="col-3">
   </div>
 </div>
