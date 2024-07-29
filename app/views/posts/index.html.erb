@@ -3,7 +3,9 @@
     <% @posts.each do |post| %>
       <article class="mb-5">
         <div>
-          <h2 class="text-capitalize"><%= post.title %></h2>
+          <%= link_to post_path(post) do %>
+            <h2 class="text-capitalize"><%= post.title %></h2>
+          <% end %>
         </div>
         <div class="mb-2">
           <small class="text-muted"><%= time_ago_in_words(post.created_at) %></small>

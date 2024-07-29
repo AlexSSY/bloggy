@@ -6,10 +6,11 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
 
-    if @comment.save
+    if @comment.valid?
+      @comment.save
       redirect_to @post
     else
-      render @post, status: :unprocessable_entity
+      render template: "posts/show", status: :unprocessable_entity
     end
   end
 
