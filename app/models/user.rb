@@ -8,4 +8,12 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, format: URI::MailTo::EMAIL_REGEXP
   validates :password, presence: true
+
+  def username
+    self.email.split("@")[0].capitalize
+  end
+
+  def has_like_in? likeable
+    likeable.likes.where(user_id: self.id).exists?
+  end
 end

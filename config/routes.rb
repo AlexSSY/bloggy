@@ -10,7 +10,13 @@ Rails.application.routes.draw do
 
   resource :session, only: %i[ new create destroy ]
   resources :posts, only: %i[ index show ]
+
   resources :posts do
     resources :comments, only: :create
+    resources :likes, only: :create
+  end
+
+  resources :comments do
+    resources :likes, only: :create
   end
 end
