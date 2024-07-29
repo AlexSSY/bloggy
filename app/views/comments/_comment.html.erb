@@ -1,14 +1,18 @@
-<div class="">
-  <%# body %>
-  <div class="d-flex">
-    <div class="me-3">
-      <%= image_tag comment.user.avatar, class: "rounded-circle", width: 64, height: 64 %>
-      <small class="text-center d-block mt-1" style="font-size: 10px"><%= comment.user.username %></small>
-    </div>
-    <div class="">
-      <%= comment.body %>
-      <div class="mt-2"></div>
-      <%= render 'likes/form', commentable: comment, endpoint: comment_likes_path(comment) %>
+<% unless comment.new_record? %>
+  <div class="">
+    <%# body %>
+    <div class="d-flex">
+      <div class="me-3">
+        <%= image_tag comment.user.avatar, class: "rounded-circle", width: 64, height: 64 %>
+        <small class="text-center d-block mt-1" style="font-size: 11px; font-weight: bold;"><%= comment.user.username %></small>
+      </div>
+      <div class="">
+        <%= comment.body %>
+        <div class="mt-2"></div>
+        <small class="text-muted"><%= time_ago_in_words(comment.created_at) %></small>
+        <div class="mt-2"></div>
+        <%= render 'likes/form', likeable: comment, endpoint: comment_likes_path(comment) %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

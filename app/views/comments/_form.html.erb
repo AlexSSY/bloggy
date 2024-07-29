@@ -8,7 +8,11 @@
     </div>
   <% end %>
   <%# Display body text-area %>
-  <%= form.text_area :body, class: "form-control mb-2", rows: 4 %>
+  <% if form.object.errors.any? %>
+    <%= form.text_area :body, class: "form-control mb-2 border border-danger", rows: 4 %>
+  <% else %>
+    <%= form.text_area :body, class: "form-control mb-2", rows: 4 %>
+  <% end %>
   <%# Display submit button %>
   <%= form.submit "Send", class: "btn btn-outline-primary" %>
 <% end %>

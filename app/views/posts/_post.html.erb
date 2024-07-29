@@ -8,5 +8,5 @@
   <div>
     <%= post.body %>
   </div>
-  <%= render 'likes/form', commentable: post, endpoint: post_likes_path(post) %>
+  <%= render 'likes/form', likeable: post, endpoint: post_likes_path(post) %>
 </article>
