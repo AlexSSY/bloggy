@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_post, only: :show
 
   def index
-    @posts = Post.all.limit 10
+    @pagy, @posts = pagy(Post.all)
   end
 
   def show
