@@ -1,6 +1,6 @@
 <%= button_to endpoint, method: :post, class: "btn", style: "border: none;" do %>
   <div class="mt-2 d-flex align-items-center">
-    <svg class="<% if current_user.has_like_in? commentable %>text-primary<% end %>" width="16px" height="16px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg class="<% if current_user&.has_like_in? commentable %>text-primary<% end %>" width="16px" height="16px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor">
         <g id="Dribbble-Light-Preview" transform="translate(-219.000000, -760.000000)" fill="currentColor">
           <g id="icons" transform="translate(56.000000, 160.000000)">
