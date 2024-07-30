@@ -4,9 +4,9 @@
     <div class="d-flex">
       <div class="me-3">
         <%= image_tag comment.user.avatar, class: "rounded-circle", width: 64, height: 64 %>
-        <small class="text-center d-block mt-1" style="font-size: 11px; font-weight: bold;"><%= comment.user.username %></small>
       </div>
       <div class="">
+        <small class="d-block mb-2 text-muted user-select-none" style="font-size: 12px; font-weight: bold;"><%= comment.user.username %></small>
         <%= comment.body %>
         <div class="mt-2"></div>
         <small class="text-muted"><%= time_ago_in_words(comment.created_at) %></small>

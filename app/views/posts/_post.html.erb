@@ -1,12 +1,29 @@
-<article>
-  <h2><%= post.title %></h2>
-  <div class="mb-2">
-    <small class="text-muted"><%= time_ago_in_words(post.created_at) %></small>
-    <br>
-    <small class="text-muted">Author: <%= post.user.username %></small>
+<%# verbose %>
+<div class="mb-5">
+  <%# Head %>
+  <% if verbose %>
+    <h2><%= post.title %></h2>
+  <% else %>
+    <%= link_to post.title, post_path(post), class: "text-capitalize fs-2 d-block" %>
+  <% end %>
+  <small class="text-muted d-block">Created: <%= time_ago_in_words(post.created_at) %></small>
+  <small class="text-muted d-block">Author: <%= post.user.username %></small>
+  <%# Body %>
+  <div class="mt-2">
+    <% if verbose %>
+      <%= post.body %>
+    <% else %>
+      <%= truncate(post.body, length: 200, omission: " ... %s") % link_to('read more', post_path(post)) %>
+    <% end %>
   </div>
-  <div>
-    <%= post.body %>
-  </div>
-  <%= render 'likes/form', likeable: post, endpoint: post_likes_path(post) %>
-</article>
+  <%# Footer %>
+  <% if verbose %>
+    <%= render 'likes/form', likeable: post, endpoint: post_likes_path(post) %>
+  <% else %>
+    <div class="d-flex align-items-center mt-2">
+      <%= render "shared/comments_count", post: post %>
+      <div class="me-3"></div>
+      <%= render "shared/likes_count", post: post %>
+    </div>
+  <% end %>
+</div>
