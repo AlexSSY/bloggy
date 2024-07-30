@@ -1,14 +1,16 @@
-<%= form_with model: comment, url: post_comments_path(post), method: :post do |form| %>
-  <%# Display object errors %>
-  <% if form.object.errors.any? %>
-    <div class="text-danger">
-      <% form.object.errors.full_messages.each do |message| %>
-        <p><%= message %></p>
-      <% end %>
-    </div>
+<%= turbo_frame_tag "comments_form" do %>
+  <%= form_with model: comment, url: post_comments_path(post), method: :post do |form| %>
+    <%# Display object errors %>
+    <% if form.object.errors.any? %>
+      <div class="text-danger">
+        <% form.object.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+    <%# Display body text-area %>
+    <%= form.text_area :body, class: "form-control mb-2" + (form.object.errors.any? ? " border-danger" : ""), rows: 4, placeholder: "Enter text" %>
+    <%# Display submit button %>
+    <%= form.submit "Send", class: "btn btn-outline-primary" %>
   <% end %>
-  <%# Display body text-area %>
-  <%= form.text_area :body, class: "form-control mb-2" + (form.object.errors.any? ? " border-danger" : ""), rows: 4, placeholder: "Enter text" %>
-  <%# Display submit button %>
-  <%= form.submit "Send", class: "btn btn-outline-primary" %>
 <% end %>
