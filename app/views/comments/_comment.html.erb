@@ -1,5 +1,5 @@
 <% unless comment.new_record? %>
-  <div class="">
+  <div class="mb-4">
     <%# body %>
     <div class="d-flex">
       <div class="me-3">
@@ -11,7 +11,7 @@
         <div class="mt-2"></div>
         <small class="text-muted"><%= time_ago_in_words(comment.created_at) %></small>
         <div class="mt-2"></div>
-        <%= render 'likes/form', likeable: comment, endpoint: comment_likes_path(comment) %>
+        <%= render 'likes/button', likeable: comment %>
       </div>
     </div>
   </div>

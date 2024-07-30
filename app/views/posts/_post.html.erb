@@ -18,7 +18,7 @@
   </div>
   <%# Footer %>
   <% if verbose %>
-    <%= render 'likes/form', likeable: post, endpoint: post_likes_path(post) %>
+    <%= render 'likes/button', likeable: post %>
   <% else %>
     <div class="d-flex align-items-center mt-2">
       <%= render "shared/comments_count", post: post %>

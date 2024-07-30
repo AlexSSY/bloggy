@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  include ActionView::RecordIdentifier
+
   before_action :authenticate_user!
   before_action :set_likeable
 
@@ -9,7 +11,10 @@ class LikesController < ApplicationController
       @likeable.likes.create(user_id: current_user.id)
     end
 
-    redirect_to @likeable
+    respond_to do |format|
+      format.html { redirect_to @likeable }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@likeable, :likes), partial: "likes/button", locals: {likeable: @likeable}) }
+    end
   end
 
   private

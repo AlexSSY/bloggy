@@ -10,7 +10,7 @@
       <%= render 'comments/form', comment: @comment || Comment.new, post: @post %>
       <%# Display comments list %>
       <div class="mt-4"></div>
-      <%= render 'comments/comments', comments: @post.comments %>
+      <%= render @post.comments %>
     </div>
   </div>
 </div>
