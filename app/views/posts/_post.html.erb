@@ -4,7 +4,7 @@
   <% if verbose %>
     <h2><%= post.title %></h2>
   <% else %>
-    <%= link_to post.title, post_path(post), class: "text-capitalize fs-2 d-block" %>
+    <%= link_to raw(search_highlight(post.title)), post_path(post), class: "text-capitalize fs-2 d-block" %>
   <% end %>
   <small class="text-muted d-block">Created: <%= time_ago_in_words(post.created_at) %></small>
   <small class="text-muted d-block">Author: <%= post.user.username %></small>
