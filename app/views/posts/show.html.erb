@@ -13,7 +13,7 @@
       <%= turbo_frame_tag dom_id(@post, "comments_list") do %>
         <%= render @post.comments.limit(10).offset(0) %>
       <% end %>
-      <div data-controller="more-comments">
+      <div data-controller="more-comments" data-more-comments-comments-list-id-value=<%= dom_id(@post, "comments_list") %>>
         <%= button_tag "More comments", class: "d-block mx-auto btn btn-link-primary", data: { action: "click->more-comments#click" } %>
       </div>
     </div>

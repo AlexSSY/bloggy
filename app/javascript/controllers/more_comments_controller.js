@@ -3,6 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="more-comments"
 export default class extends Controller {
 
+  static values = { commentsListId: String }
+
   connect() {
     self.limit = 10
     self.offset = self.limit
@@ -25,7 +27,7 @@ export default class extends Controller {
           return
         }
 
-        document.getElementById("comments_list_post_1").innerHTML += response_data
+        document.getElementById(this.commentsListIdValue).innerHTML += response_data
 
       })
 
