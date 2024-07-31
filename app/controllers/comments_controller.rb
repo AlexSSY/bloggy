@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
   include ActionView::RecordIdentifier
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index
   before_action :set_post
   before_action :set_comment, only: :destroy
 
   def index
-      
+      render @post.comments.limit(index_params[:limit]).offset(index_params[:offset])
   end
 
   def create
@@ -49,5 +49,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body).merge(user_id: current_user.id)
+  end
+
+  def index_params
+    params.permit(:offset, :limit).with_defaults(offset: 0, limit: 10)
   end
 end

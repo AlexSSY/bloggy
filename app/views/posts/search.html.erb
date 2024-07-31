@@ -1,0 +1,12 @@
+<% if @posts.length == 0 %>
+  <p class="text-center">No results</p>
+<% else %>
+  <p class="text-center"><%= pluralize(@posts.length, "result") %></p>
+<% end %>
+<div class="my-4">
+  <%== pagy_bootstrap_nav @pagy, class: "mx-auto" %>
+</div>
+<%= render @posts, verbose: false %>
+<div class="mt-4">
+  <%== pagy_bootstrap_nav @pagy, class: "mx-auto" %>
+</div>

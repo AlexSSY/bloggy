@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :password, presence: true
 
   def username
-    self.email.split("@")[0].capitalize
+    self.email.split("@").first.capitalize
   end
 
   def has_like_in? likeable

@@ -8,6 +8,6 @@ class Comment < ApplicationRecord
   validates :body, presence: true
 
   def owned_by(user)
-    self.user_id == user.id
+    self.user_id == user&.id
   end
 end

@@ -10,9 +10,18 @@ class PostsController < ApplicationController
   def show
   end
 
+  def search
+    query = "%#{search_params[:query]}%"
+    @pagy, @posts = pagy(Post.where("title LIKE ?", query))
+  end
+
   private
 
     def set_post
       @post = Post.find_by(id: params[:id])
+    end
+
+    def search_params
+      params.permit(:query).with_defaults(query: "")
     end
 end
