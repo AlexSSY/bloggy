@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    cookies[:referrer] = request.referrer
     @user = User.new
   end
   
@@ -8,7 +9,9 @@ class SessionsController < ApplicationController
 
     if @user.present?
       login @user
-      redirect_to root_path, notice: "you have been logged in successfully."
+      url = cookies[:referrer]
+      cookies.delete(:referrer)
+      redirect_to url, notice: "you have been logged in successfully."
     else
       flash[:alert] = "incorrect email or password."
       render :new, status: :unprocessable_entity
