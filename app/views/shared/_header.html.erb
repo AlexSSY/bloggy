@@ -8,10 +8,13 @@
         <li><a href="/" class="nav-link px-2 link-dark">Home</a></li>
         <li><%= link_to "Posts", posts_path, class: "nav-link px-2 link-dark" %></li>
       </ul>
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+      <!--form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-      </form>
-      <% if user_logged_in? %>
+      </form-->
+      <%= form_tag posts_search_path, class: "col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3", method: :get do %>
+        <%= text_field_tag "query", nil, class: "form-control", placeholder: "Search...", aria_label: "Search" %>
+      <% end %>
+      <% if user_logged_in? %>  
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <%= image_tag current_user.avatar, class: "rounded-circle", width: 32, height: 32 %>

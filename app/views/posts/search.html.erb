@@ -1,7 +1,7 @@
 <% if @posts.length == 0 %>
   <p class="text-center">No results</p>
 <% else %>
-  <p class="text-center"><%= pluralize(@posts.length, "result") %></p>
+  <p class="text-center"><%= pluralize(@pagy.count, "result") %></p>
 <% end %>
 <div class="my-4">
   <%== pagy_bootstrap_nav @pagy, class: "mx-auto" %>
