@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-4"></div>
+  <div class="col-4">
+    <%= form_with model: @user, url: registrations_path, method: :post do |form| %>
+
+      <%# Display object errors %>
+      <% if form.object.errors.any? %>
+        <div class="text-danger">
+          <% form.object.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%# Email %>
+      <div class="mb-3 row">
+        <%= form.label :email, class: "col-sm-4 col-form-label" %>
+        <div class="col-sm-8">
+          <%= form.email_field :email, class: "form-control" %>
+        </div>
+      </div>
+
+      <%# Avatar %>
+      <div class="mb-3 row">
+
+        <%# This hidden field needs to keep existing attaches  %>
+        <%#= form.hidden_field :avatar, value: @user.avatar.signed_id if @user.avatar.attached? %>
+
+        <%= form.label :avatar, class: "col-sm-4 col-form-label" %>
+        <div class="col-sm-8">
+          <%= form.file_field :avatar, direct_upload: true, class: "form-control" %>
+        </div>
+      </div>
+
+      <%# Password %>
+      <div class="mb-3 row">
+        <%= form.label :password, class: "col-sm-4 col-form-label" %>
+        <div class="col-sm-8">
+          <%= form.password_field :password, class: "form-control" %>
+        </div>
+      </div>
+
+      <%# Password confirmation %>
+      <div class="mb-3 row">
+        <%= form.label :password_confirmation, class: "col-sm-4 col-form-label" %>
+        <div class="col-sm-8">
+          <%= form.password_field :password_confirmation, class: "form-control" %>
+        </div>
+      </div>
+
+      <%# Submit %>
+      <div class="">
+        <%= form.submit "Register", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-4"></div>
+</div>

@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :comments do
     resources :likes, only: :create
   end
+
+  resources :registrations, only: %i[ new create ]
 end

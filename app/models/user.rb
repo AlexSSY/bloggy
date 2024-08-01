@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, format: URI::MailTo::EMAIL_REGEXP
   validates :password, presence: true
+  validates :avatar, presence: true
 
   def username
     self.email.split("@").first.capitalize

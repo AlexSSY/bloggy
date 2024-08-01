@@ -28,7 +28,7 @@
       <% else %>
         <div class="text-end">
           <%= link_to "Login", new_session_path, class: "btn btn-outline-primary me-2" %>
-          <a type="button" class="btn btn-primary">Sign-up</a>
+          <%= link_to "Sign-up", new_registration_path, type: "button", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
