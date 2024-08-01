@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   include Pagy::Backend
 
-  before_action :set_post, only: :show
-  before_action :authenticate_user!, only: %i[ new create ]
+  before_action :set_post, only: %i[ show edit update ]
+  before_action :authenticate_user!, only: %i[ new create edit update ]
+  before_action :check_post_owner!, only: %i[ edit update ]
 
   def index
     @pagy, @posts = pagy(Post.all)
@@ -30,6 +31,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @post.update! update_params
+      redirect_to @post, notice: "Post updated successfully."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
     def set_post
@@ -42,5 +54,13 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :body).merge(user_id: current_user.id)
+    end
+
+    def update_params
+      params.require(:post).permit(:title, :body)
+    end
+
+    def check_post_owner!
+      redirect_to root_path, alert: "This is not your post scumbag!" unless @post.created_by current_user
     end
 end

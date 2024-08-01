@@ -8,6 +8,7 @@
   <% else %>
     <%= link_to raw(search_highlight(post.title)), post_path(post), class: "text-capitalize fs-2 d-block" %>
   <% end %>
+  <%= link_to "edit", edit_post_path(post) if post.created_by current_user %>
   <small class="text-muted d-block">Created: <%= time_ago_in_words(post.created_at) %></small>
   <small class="text-muted d-block">Author: <%= post.user.username %></small>
   <%# Body %>
