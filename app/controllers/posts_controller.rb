@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   include Pagy::Backend
 
-  before_action :set_post, only: %i[ show edit update ]
-  before_action :authenticate_user!, only: %i[ new create edit update ]
-  before_action :check_post_owner!, only: %i[ edit update ]
+  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[ index show search ]
+  before_action :check_post_owner!, only: %i[ edit update destroy ]
 
   def index
     @pagy, @posts = pagy(Post.all)
@@ -40,6 +40,11 @@ class PostsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to posts_path, notice: "Post deleted successfully."
   end
 
   private
