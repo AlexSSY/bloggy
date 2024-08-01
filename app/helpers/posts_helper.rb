@@ -4,9 +4,9 @@ module PostsHelper
   def search_highlight(content)
     query = params[:query]
     if query
-      content.gsub query, '<span class="bg-warning">' + (query) + '</span>'
+      content.gsub /#{query}/i, '<span class="bg-warning">\0</span>'
     else
-      content
+      content 
     end
   end
 end

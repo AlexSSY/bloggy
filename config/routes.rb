@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resource :session, only: %i[ new create destroy ]
   get "posts/search" => "posts#search"
-  resources :posts, only: %i[ index show ]
+  resources :posts, only: %i[ index show new create ]
 
   resources :posts do
     resources :comments, only: %i[ index create destroy ]

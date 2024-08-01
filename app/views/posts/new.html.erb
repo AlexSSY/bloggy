@@ -1,0 +1,24 @@
+<%= form_with model: @post, url: posts_path, method: :post do |form| %>
+  <%# Display object errors %>
+  <% if form.object.errors.any? %>
+    <div class="text-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <%# Title %>
+  <div class="form-group mb-3">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <%# body %>
+  <div class="form-group mb-3">
+    <%= form.label :body %>
+    <%= form.rich_text_area :body %>
+  </div>
+  <%# Title %>
+  <div class="form-group">
+    <%= form.submit "Create post", class: "btn btn-primary" %>
+  </div>
+<% end %>
