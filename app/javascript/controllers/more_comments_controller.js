@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="more-comments"
 export default class extends Controller {
 
-  static values = { commentsListId: String }
+  static values = { commentsListId: String, postId: Number }
 
   connect() {
     self.limit = 10
@@ -13,7 +13,7 @@ export default class extends Controller {
   click(event) {
     event.preventDefault()
 
-    var url = `/posts/1/comments?limit=${self.limit}&offset=${self.offset}`
+    var url = `/posts/${this.postIdValue}/comments?limit=${self.limit}&offset=${self.offset}`
 
     fetch(url)
       .then((response) => response.text())
